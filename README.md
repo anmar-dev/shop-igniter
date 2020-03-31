@@ -2,7 +2,7 @@
 A simple single online shop.
 
 *Description*
-Simple online shop with no payment. 
+Simple online shop with no payment (its for physical products). 
 the objective to learn how to implement a simple online cart shop using the new CI4.
 
 # *Features*
