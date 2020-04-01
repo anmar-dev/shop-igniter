@@ -10,18 +10,20 @@ class ProductModel extends Model
         protected $returnType = 'array';
         protected $useSoftDeletes = false;
 
-        protected $allowedFields = ['name', 'description', 'stock', 'price'];
+        protected $allowedFields = ['title', 'slug', 'description', 'stock', 'price', 'image'];
 
-        protected $useTimestamps = false;
+        protected $useTimestamps = true;
         protected $createdField  = 'created_at';
         protected $updatedField  = 'updated_at';
         protected $deletedField  = 'deleted_at';
 
         protected $validationRules    = [
-              'name'        => 'required',
-              'description' => 'permit_empty',
-              'stock'       => 'permit_empty',
-              'price'       => 'permit_empty',
+              'title'       => 'required|alpha_numeric_space',
+              'slug'        => 'required|alpha_numeric_punct',
+              'description' => 'required|string',
+              'stock'       => 'required|numeric',
+              'price'       => 'required|numeric',
+              'image'       => 'permit_empty|alpha_numeric_punct',
         ];
         protected $validationMessages = [];
         protected $skipValidation     = false;

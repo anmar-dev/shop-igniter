@@ -1,3 +1,4 @@
+
 -- Dumping database structure for shopigniter
 CREATE DATABASE IF NOT EXISTS `shopigniter` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `shopigniter`;
@@ -45,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `order` (
 -- Dumping structure for table shopigniter.product
 CREATE TABLE IF NOT EXISTS `product` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `slug` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `stock` smallint(6) NOT NULL DEFAULT '0',
   `price` decimal(6,2) NOT NULL DEFAULT '0.00',

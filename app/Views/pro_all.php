@@ -8,6 +8,7 @@
     <div class="heading-main">
       <h1>Products List</h1>
       <hr>
+      <?php var_dump($products); ?>
     </div>
   </main>
 </section>

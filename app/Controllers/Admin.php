@@ -1,9 +1,7 @@
 <?php namespace App\Controllers;
 
 use CodeIgniter\Controller;
-
 use CodeIgniter\Exceptions\PageNotFoundException;
-
 use App\Models\ProductModel;
 
 class Admin extends BaseController
@@ -36,7 +34,6 @@ class Admin extends BaseController
 	*/
 	public function index()
 	{
-
 		return view('admin/dashboard', $this->data);
 	}
 	//-----------------------------------------------------------
@@ -45,27 +42,35 @@ class Admin extends BaseController
 	*/
 	public function product()
 	{
-
 		return view('admin/product', $this->data);
 	}
-
-
-/***************************
-*
-*			Testing
-*
-***************************/
-	public function insert()
+	//-----------------------------------------------------------
+	/**
+	* 			Add Product
+	*/
+	public function pro_add()
 	{
+		if ($this->request->getMethod() === 'post') {
 
-		$data = [
-			'name' => 'Product 8',
-			'description' => 'Descriping the product',
-		];
-		$this->proModel->insert($data);
+			if (! $this->validate('addProduct'))
+			    {
+						session()->setFlashdata('status', "Unable to add");
+						session()->setFlashdata('errors', $this->validator->getErrors());
+			      return redirect()->back()->withInput();
+			    }
+					$file = $this->request->getFile('img');
+					$newName = $file->getRandomName();
+					$file->move(ROOTPATH.'public/uploads/products/', $newName);
 
+					$insertData = $this->request->getPost();
+					$insertData['image'] = $newName;
+					$insertData['slug'] = url_title($this->request->getPost('title'));
+
+					$this->proModel->insert($insertData);
+
+					session()->setFlashdata('status', 'Product added.');
+		}
+		return view('admin/pro_add', $this->data);
 	}
-
-	//--------------------------------------------------------------------
-
+//--------------------------------------------------------------------
 }

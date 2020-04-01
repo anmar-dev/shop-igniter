@@ -11,12 +11,12 @@
     </div>
     <div class="">
       <ul>
-        <li><a href="<?=base_url('admin/prod_add')?>">Add Product</a></li>
+        <li><a href="<?=base_url('admin/pro_add')?>">Add Product</a></li>
       </ul>
     </div>
     <div class="list-container">
       <?php
-      
+        var_dump($products);
       ?>
     </div>
   </main>

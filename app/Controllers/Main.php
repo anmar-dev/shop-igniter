@@ -21,7 +21,9 @@ class Main extends BaseController
 				'css' => 'marx.min.css',
 			],
 		];
-		session()->set($userData);
+		if (is_null(session('setting'))) {
+			session()->set($userData);
+		}
 	}
 	//-----------------------------------------------------------
 	/**
@@ -29,10 +31,21 @@ class Main extends BaseController
 	*/
 	public function index()
 	{
-
+		$this->data['products'] = $this->proModel->orderBy('created_at', 'desc')->findAll('10');
 		return view('main', $this->data);
 	}
-
-	//--------------------------------------------------------------------
-
+	//-----------------------------------------------------------
+	/**
+	* 			Load main view page (System Starting point)
+	*/
+	public function fetch(int $id = null)
+	{
+		if (!is_null($id)) {
+				$this->data['product'] = $this->proModel->find($id);
+				return view('pro_single', $this->data);
+		}
+		$this->data['products'] = $this->proModel->orderBy('created_at', 'desc')->findAll();
+		return view('pro_all', $this->data);
+	}
+	//-----------------------------------------------------------
 }

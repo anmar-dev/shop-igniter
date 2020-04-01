@@ -9,7 +9,11 @@
       <h1>Home</h1>
       <hr>
     </div>
-    <img src="<?=base_url('uploads/product/no-img.png')?>" alt="">
+    <div class="products">
+      <img src="<?=base_url('uploads/product/no-img.png')?>" alt="">
+        <?php var_dump($products); ?>
+    </div>
+
   </main>
 </section>
 
